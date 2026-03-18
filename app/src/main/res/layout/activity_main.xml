@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark">
+
+    <!-- ── OSM Map View ── -->
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ── Top HUD Bar ── -->
+    <include
+        android:id="@+id/hudTopBar"
+        layout="@layout/hud_top_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ── Speed Display (bottom-left) ── -->
+    <include
+        android:id="@+id/speedPanel"
+        layout="@layout/hud_speed_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- ── Zoom Controls (right side) ── -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="180dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnZoomIn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_hud_button"
+            android:contentDescription="@string/zoom_in"
+            android:src="@drawable/ic_zoom_in"
+            android:tint="@color/neon_cyan" />
+
+        <ImageButton
+            android:id="@+id/btnZoomOut"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_hud_button"
+            android:contentDescription="@string/zoom_out"
+            android:src="@drawable/ic_zoom_out"
+            android:tint="@color/neon_cyan" />
+
+    </LinearLayout>
+
+    <!-- ── Search Bar (collapsible) ── -->
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_search_bar"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hudTopBar">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/search"
+            android:src="@drawable/ic_search"
+            android:tint="@color/neon_cyan" />
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:fontFamily="@font/orbitron_regular"
+            android:hint="@string/search_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:singleLine="true"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <!-- ── Bottom Navigation Bar ── -->
+    <include
+        android:id="@+id/bottomNavBar"
+        layout="@layout/hud_bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- ── Re-center FAB ── -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabRecenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/recenter"
+        android:src="@drawable/ic_my_location"
+        app:backgroundTint="@color/bg_card"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/rally_red" />
+
+    <!-- ── Search toggle button (top-right) ── -->
+    <ImageButton
+        android:id="@+id/btnSearch"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_hud_button"
+        android:contentDescription="@string/search"
+        android:src="@drawable/ic_search"
+        android:tint="@color/neon_cyan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
