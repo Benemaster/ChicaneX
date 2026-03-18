@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateSpeedDisplay(location: Location) {
         currentSpeedKmh = if (location.hasSpeed()) {
-            location.speed * 3.6f // m/s to km/h
+            location.speed * MS_TO_KMH
         } else {
             0f
         }
@@ -172,8 +172,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateSpeedWarning(speed: Int) {
         val warningColor = when {
-            speed > 130 -> ContextCompat.getColor(this, R.color.rally_red)
-            speed > 100 -> ContextCompat.getColor(this, R.color.rally_orange)
+            speed > SPEED_THRESHOLD_CRITICAL -> ContextCompat.getColor(this, R.color.rally_red)
+            speed > SPEED_THRESHOLD_WARNING -> ContextCompat.getColor(this, R.color.rally_orange)
             else -> ContextCompat.getColor(this, R.color.neon_cyan)
         }
         binding.tvSpeed.setTextColor(warningColor)
@@ -199,5 +199,11 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         locationOverlay?.disableMyLocation()
         binding.mapView.onDetach()
+    }
+
+    companion object {
+        private const val MS_TO_KMH = 3.6f
+        private const val SPEED_THRESHOLD_WARNING = 100
+        private const val SPEED_THRESHOLD_CRITICAL = 130
     }
 }
