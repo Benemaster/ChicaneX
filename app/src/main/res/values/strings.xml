@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ChicaneX</string>
+    <string name="splash_subtitle">AI RALLY NAVIGATOR</string>
+    <string name="splash_tagline">PRECISION · SPEED · CONTROL</string>
+    <string name="speed_unit">KM/H</string>
+    <string name="no_road">LOCATING…</string>
+    <string name="navigate">NAVIGATE</string>
+    <string name="map_mode">MAP MODE</string>
+    <string name="settings">SETTINGS</string>
+    <string name="recenter">Re-center map</string>
+    <string name="zoom_in">Zoom in</string>
+    <string name="zoom_out">Zoom out</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search destination…</string>
+    <string name="location_permission_denied">Location permission denied. Navigation disabled.</string>
+</resources>

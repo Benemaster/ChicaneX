@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Background colors -->
+    <color name="bg_dark">#0A0C0F</color>
+    <color name="bg_surface">#111318</color>
+    <color name="bg_card">#1A1D24</color>
+    <color name="bg_card_border">#252932</color>
+
+    <!-- Rally accent colors -->
+    <color name="rally_red">#E8001C</color>
+    <color name="rally_red_dark">#9E0014</color>
+    <color name="rally_orange">#FF6A00</color>
+    <color name="rally_yellow">#FFD600</color>
+
+    <!-- Futuristic / neon accents -->
+    <color name="neon_cyan">#00F5FF</color>
+    <color name="neon_cyan_dim">#0099A8</color>
+    <color name="neon_blue">#0033FF</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#F0F2F5</color>
+    <color name="text_secondary">#7A8394</color>
+    <color name="text_dim">#3D4450</color>
+
+    <!-- Status / Map overlays -->
+    <color name="map_overlay_bg">#CC0A0C0F</color>
+    <color name="hud_top_bg">#E60A0C0F</color>
+    <color name="hud_bottom_bg">#F00A0C0F</color>
+    <color name="speed_panel_bg">#D91A1D24</color>
+
+    <!-- Compatibility / legacy -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
