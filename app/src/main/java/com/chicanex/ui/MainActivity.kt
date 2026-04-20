@@ -1,8 +1,5 @@
 package com.chicanex.ui
 
-import android.Manifest
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -12,9 +9,8 @@ import android.widget.ProgressBar
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.chicanex.R
 import com.chicanex.audio.AudioConfig
 import com.chicanex.audio.AudioEventListener
@@ -59,9 +55,14 @@ class MainActivity : AppCompatActivity(), AudioEventListener {
     private lateinit var progressBarLoading: ProgressBar
     private lateinit var textFeatureList: TextView
 
+    /** Activity Result launcher for opening GPX documents (replaces deprecated onActivityResult) */
+    private val openDocumentLauncher = registerForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri: Uri? ->
+        uri?.let { loadRoute(it) }
+    }
+
     companion object {
-        private const val REQUEST_CODE_OPEN_FILE = 1001
-        private const val REQUEST_PERMISSION_STORAGE = 1002
         private const val SIMULATION_INTERVAL_MS = 100L
     }
 
@@ -147,34 +148,11 @@ class MainActivity : AppCompatActivity(), AudioEventListener {
     }
 
     private fun openFilePicker() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                REQUEST_PERMISSION_STORAGE
-            )
-            return
-        }
-
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-            addCategory(Intent.CATEGORY_OPENABLE)
-            type = "*/*"
-            putExtra(
-                Intent.EXTRA_MIME_TYPES,
-                arrayOf("application/gpx+xml", "text/xml", "application/xml")
-            )
-        }
-        startActivityForResult(intent, REQUEST_CODE_OPEN_FILE)
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_OPEN_FILE && resultCode == RESULT_OK) {
-            data?.data?.let { uri -> loadRoute(uri) }
-        }
+        // Uses Storage Access Framework via ActivityResultContracts.OpenDocument
+        // No READ_EXTERNAL_STORAGE permission needed (works on all API levels)
+        openDocumentLauncher.launch(
+            arrayOf("application/gpx+xml", "text/xml", "application/xml", "*/*")
+        )
     }
 
     private fun loadRoute(uri: Uri) {
