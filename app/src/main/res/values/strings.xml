@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ChicaneX</string>
+    <string name="subtitle">AI Rally Copilot</string>
+    <string name="load_gpx">Load GPX Route</string>
+    <string name="play">▶ Play</string>
+    <string name="pause">⏸ Pause</string>
+    <string name="stop">⏹ Stop</string>
+    <string name="current_note">Current Pace Note</string>
+    <string name="route_features">Route Features</string>
+    <string name="progress_format">Note %1$d / %2$d — %3$d m</string>
+    <string name="audio_ready">Rally audio engine ready</string>
+    <string name="audio_error">Audio error: %1$s</string>
+    <string name="load_error">Failed to load route: %1$s</string>
+</resources>
